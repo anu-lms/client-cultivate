@@ -1,0 +1,139 @@
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  .field {
+    margin-bottom: 1em;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  font-family: $font-family-base;
+  background: $eggshell-white;
+  border: 2px solid $london-sky;
+  border-radius: 8px;
+  padding: 1em .8em .6em;
+  color: $carbon;
+  font-size: 1em;
+  width: 100%;
+  outline: none;
+  transition: all .2s;
+  height: 56px;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow:  0 0 0 1000px $eggshell-white inset !important;
+    -webkit-text-fill-color: $carbon !important;
+  }
+
+  &:focus {
+    border-color: $anu-blue;
+  }
+}
+// Removes default border in FF.
+input:invalid,
+input:required {
+  box-shadow:none;
+}
+textarea {
+  height: auto;
+  resize: none;
+  overflow: hidden !important;
+  padding-top: .6em;
+  line-height: 1.5em;
+}
+
+.checkbox,
+.radio {
+  padding-bottom: 1em;
+  position: relative;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: none;
+
+    & + span {
+      border-radius: 2px;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      float: left;
+      width: 1.5em;
+      height: 1.5em;
+      vertical-align: middle;
+      background: white left top no-repeat;
+      border: 2px solid $anu-blue;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    &:checked + span {
+      background: $anu-blue;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    margin-left: 3em;
+  }
+
+  svg {
+    position: relative;
+    top: -1px;
+    left: 2px;
+  }
+}
+
+.radio {
+  input[type="radio"] {
+    & + span {
+      border-radius: 50%;
+    }
+  }
+}
+
+// Style https://github.com/tonystar/bootstrap-float-label
+.has-float-label {
+
+  .form-control:placeholder-shown:not(:focus) + * {
+    color: $london-sky;
+    font-size: 1em;
+    left: .5em;
+    top: 1.25em;
+    opacity: 1;
+    padding: 0;
+  }
+
+  .form-control:focus + * {
+    color: $anu-blue;
+  }
+
+  label,
+  & > span {
+    color: $london-sky;
+    font-size: .625em;
+    top: .5em;
+    &:after {
+      background: none;
+    }
+  }
+}
+
+// Errors
+.form-group.has-error {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    border: solid 2px $alizarin-crimson;
+  }
+}

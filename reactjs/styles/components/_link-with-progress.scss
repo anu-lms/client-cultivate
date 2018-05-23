@@ -1,0 +1,57 @@
+.link-with-progress {
+  font-size: .75em;
+  color: $anu-black;
+  display: block;
+  padding: 0.75em 3em 0.75em 1em;
+  position: relative;
+  transition: all .2s;
+  @include media-breakpoint-up(lg) {
+    padding-left: 1.5em;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background: darken($gray91, 10);
+  }
+
+  &.active {
+    background: darken($gray91, 10);
+  }
+
+  &.completed {
+    background: $growth-green-transparent;
+
+    &:hover,
+    &.active {
+      background: darken($growth-green-transparent, 15);
+    }
+  }
+
+  .completed {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 1em;
+    top: .875em;
+  }
+
+  /**
+   * react-circular-progressbar styles
+   */
+  .CircularProgressbar {
+    width: 20px;
+    position: absolute;
+    right: 1em;
+    top: .875em;
+  }
+
+  .CircularProgressbar .CircularProgressbar-path {
+    stroke: $seafoam-green;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+
+  /*.CircularProgressbar .CircularProgressbar-trail {
+    stroke: #d6d6d6;
+  }*/
+}

@@ -1,0 +1,51 @@
+uuid: 74223879-e59c-463b-a823-89eab8342aca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.lesson.field_is_assessment
+    - field.field.node.lesson.field_lesson_blocks
+    - field.field.node.lesson.field_lesson_course
+    - node.type.lesson
+  module:
+    - entity_reference_revisions
+    - user
+id: node.lesson.default
+targetEntityType: node
+bundle: lesson
+mode: default
+content:
+  field_is_assessment:
+    weight: 3
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_lesson_blocks:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_lesson_course:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

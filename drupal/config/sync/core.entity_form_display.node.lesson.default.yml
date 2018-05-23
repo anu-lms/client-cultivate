@@ -1,0 +1,81 @@
+uuid: 4fb4fe18-e066-4846-b5bb-43edbc7d729c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.lesson.field_is_assessment
+    - field.field.node.lesson.field_lesson_blocks
+    - field.field.node.lesson.field_lesson_course
+    - node.type.lesson
+  module:
+    - paragraphs
+id: node.lesson.default
+targetEntityType: node
+bundle: lesson
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_is_assessment:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_lesson_blocks:
+    type: paragraphs
+    weight: 3
+    settings:
+      title: Block
+      title_plural: Blocks
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  field_lesson_course:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  path: true
+  promote: true
+  sticky: true

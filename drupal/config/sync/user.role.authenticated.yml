@@ -1,0 +1,45 @@
+uuid: 9402e25a-6a8b-47a2-bf1e-4e8a00d80dff
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: -9
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access manager toolbar'
+  - 'access site-wide contact form'
+  - 'access user profiles'
+  - 'add simple_oauth entities'
+  - 'change own username'
+  - 'create learner_progress entities'
+  - 'create notebook entities'
+  - 'create quiz_result entities'
+  - 'create record_forms entities'
+  - 'delete own notebook entities'
+  - 'edit own learner_progress entities'
+  - 'edit own notebook entities'
+  - 'edit own quiz_result entities'
+  - 'issue subrequests'
+  - 'restful get classes_courses_resources'
+  - 'restful get course_resources'
+  - 'restful get current_user'
+  - 'restful get learner_progress'
+  - 'restful get learner_progress_detailed'
+  - 'restful get quizzes_results'
+  - 'restful post contact_message'
+  - 'restful post learner_progress'
+  - 'restful post learner_progress_detailed'
+  - 'restful post quizzes_results'
+  - 'restful post user_token_revoke'
+  - 'update own simple_oauth entities'
+  - 'use text format filtered_html'
+  - 'view any site_menu entities'
+  - 'view commerce_product'
+  - 'view files'
+  - 'view own learner_progress entities'
+  - 'view own notebook entities'
+  - 'view own quiz_result entities'

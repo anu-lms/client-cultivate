@@ -1,0 +1,88 @@
+uuid: 10460b65-fdfe-4411-a249-561e5cf7b9bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.course.field_course_description
+    - field.field.node.course.field_course_has_resources
+    - field.field.node.course.field_course_image
+    - field.field.node.course.field_course_instructors
+    - field.field.node.course.field_course_lessons
+    - field.field.node.course.field_course_organisation
+    - field.field.node.course.field_time_to_complete_minutes
+    - node.type.course
+  module:
+    - image
+    - text
+    - user
+id: node.course.default
+targetEntityType: node
+bundle: course
+mode: default
+content:
+  field_course_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_course_has_resources:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_course_image:
+    weight: 2
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_course_instructors:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_course_lessons:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_course_organisation:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_time_to_complete_minutes:
+    weight: 6
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

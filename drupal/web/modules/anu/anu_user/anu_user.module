@@ -1,0 +1,117 @@
+<?php
+
+use Drupal\Core\Url;
+
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_token_info().
+ */
+function anu_user_token_info() {
+  $info['tokens']['user']['frontend-one-time-login-url'] = array(
+    'name' => t('One-time login URL to the Frontend'),
+    'description' => t('The URL of the one-time login page for the user account.'),
+    'restricted' => TRUE,
+  );
+  $info['tokens']['site']['frontend-url'] = array(
+    'name' => t('URL to the Frontend'),
+    'description' => t('The URL of the Frontend application.'),
+    'restricted' => TRUE,
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens()
+ */
+function anu_user_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+  $replacements = array();
+
+  if ($type == 'user' && !empty($data['user'])) {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'frontend-one-time-login-url':
+
+          $replacements[$original] = anu_user_pass_reset_url($data['user'], $options);
+          break;
+      }
+    }
+  }
+  elseif ($type == 'site') {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'frontend-url':
+
+          $replacements[$original] = \Drupal\Core\Site\Settings::get('frontend_domain');
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Generates a unique URL for a user to log in and reset their password.
+ *
+ * @param \Drupal\user\UserInterface $account
+ *   An object containing the user account.
+ * @param array $options
+ *   (optional) A keyed array of settings. Supported options are:
+ *   - langcode: A language code to be used when generating locale-sensitive
+ *    URLs. If langcode is NULL the users preferred language is used.
+ *
+ * @return string
+ *   A unique URL that provides a one-time log in for the user, from which
+ *   they can change their password.
+ */
+function anu_user_pass_reset_url($account, $options = []) {
+  $timestamp = \Drupal::time()->getRequestTime();
+  $uid = $account->id();
+  $hash = user_pass_rehash($account, $timestamp);
+  $frontend_domain = \Drupal\Core\Site\Settings::get('frontend_domain');
+  $langcode = isset($options['langcode']) ? $options['langcode'] : $account->getPreferredLangcode();
+  $url = Url::fromUri($frontend_domain . "user/reset/$uid/$timestamp/$hash",
+    [
+      'absolute' => TRUE,
+      'language' => \Drupal::languageManager()->getLanguage($langcode)
+    ]
+  );
+  return $url->toString();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function anu_user_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+ $form['#validate'][] = '_anu_backend_login_validate';
+}
+
+/**
+ * Validates user account during backend authentication.
+ * Only managers and administrators may access backend.
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function _anu_backend_login_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  if ($form_state->hasValue('name')) {
+    $name = $form_state->getValue('name');
+
+    $user = user_load_by_name($name);
+
+    if (!$user) {
+      $user = user_load_by_mail($name);
+    }
+
+    if ($user) {
+      $administrative_roles = ['administrator', 'moderator'];
+      $user_roles = $user->getRoles();
+      if (!array_intersect($user_roles, $administrative_roles)) {
+        $form_state->setErrorByName('name', t('User @name is not allowed to access backend.' , array('@name' => $name)));
+      }
+    }
+  }
+}

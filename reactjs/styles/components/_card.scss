@@ -1,0 +1,43 @@
+.card {
+  box-shadow: $shadow2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .card-image {
+    display: block;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .progress-bar {
+    height: .5em;
+    background: $gray91;
+
+    .current-progress {
+      height: .5em;
+      background: $clay-orange;
+    }
+  }
+
+  .heading {
+    padding: 1.5em 1em;
+
+    h5 {
+      margin: 0;
+
+      a {
+        color: $anu-black;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 0 1em 1.5em;
+    margin-top: auto;
+  }
+
+}

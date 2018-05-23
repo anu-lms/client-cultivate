@@ -1,0 +1,348 @@
+##################
+#
+# Circle CI environment variables used:
+#
+# $PLATFORM_PROJECT_NAME - Machine name of a project on Platform.sh. Example: dnrvwqsdwxjry.
+# $PLATFORM_TOKEN - Authentication token of a user from Platform.sh.
+# $HTTP_USERNAME - Username to use for HTTP authentication on non-production environments.
+# $HTTP_PASSWORD - Password to use for HTTP authentication on non-production environments.
+# $CLIENT_* - Git repo URL of every Anu's client who should be getting production updates.
+# $SECR_TOKEN_FRONTEND - Access token from the dashboard to submit frontend application to penetration tests service.
+# $SECR_TOKEN_BACKEND - Access token from the dashboard to submit backend application to penetration tests service.
+#
+###################
+
+# Default configs for all jobs.
+defaults: &defaults
+  working_directory: ~/anu-lms
+  docker:
+    - image: circleci/php:7.1-cli-browsers
+
+# Step to install Platform.sh. Reusable across different jobs.
+install_platform_cli: &install_platform_cli
+  name: Install and configure Platform.sh CLI
+  command: |
+    curl -sS https://platform.sh/cli/installer | php
+    sudo ln -s ~/.platformsh/bin/platform /usr/local/bin/platform
+    echo $PLATFORM_TOKEN > ~/.platformsh/token
+    cp .platform/config.yaml ~/.platformsh/config.yaml
+
+    # Add platform.sh remote to git.
+    if ! git config remote.platform.url > /dev/null; then
+      git remote add platform $PLATFORM_PROJECT_NAME@git.us.platform.sh:$PLATFORM_PROJECT_NAME.git
+    fi
+
+    # Avoid dynamic hosts issue for git push to platform.
+    echo "StrictHostKeyChecking no" > ~/.ssh/config
+
+version: 2
+jobs:
+
+  ##########################################
+  #### PREPARE PLATFORM.SH #################
+  ##########################################
+  prepare_platformsh:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          <<: *install_platform_cli
+
+      - run:
+          name: Create backup of production database and force push it to S3.
+          command: |
+            if [ $CIRCLE_BRANCH == "master" ]; then
+              platform ssh -A backend -e $CIRCLE_BRANCH "drush sql-dump -r web --gzip --result-file -v"
+              platform ssh -A backend -e $CIRCLE_BRANCH "php scripts/upload_backups.php" || true
+            fi
+
+      - run:
+          name: Make a snapshot on the production before deploy.
+          command: |
+            if [ $CIRCLE_BRANCH == "master" ]; then
+              platform snapshot:create --yes --no-wait
+            fi
+
+      - run:
+          name: Push branch changes to platform's git repository
+          command: git push --force platform $CIRCLE_BRANCH
+          no_output_timeout: 20m
+
+      - run:
+          name: Build a new environment on platform.sh using db/files from the MASTER environment
+          command: platform environment:activate -y --project $PLATFORM_PROJECT_NAME --parent=master $CIRCLE_BRANCH
+
+      - run:
+          name: Restrict access to the test environments via http
+          command: |
+            if [ $CIRCLE_BRANCH != "master" ]; then
+              platform vset env:HTTP_AUTH_USER $HTTP_USERNAME
+              platform vset env:HTTP_AUTH_PASS $HTTP_PASSWORD
+            fi
+
+      - run:
+          name: Clone database & files for stage branch or if [db sync] is presented in the commit message.
+          shell: /bin/bash
+          command: |
+            git log --format=%B -n 1 $CIRCLE_SHA1 | grep "\[db sync\]"
+            if [ $? -ne 1 ] || [ $CIRCLE_BRANCH == "stage" ]; then
+              platform sync data -y
+            fi
+
+  ###########################################
+  ############## PREPARE THE SITE ###########
+  ###########################################
+  prepare_site:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          <<: *install_platform_cli
+
+      - run:
+          name: Rebuild caches
+          command: platform ssh -A backend "cd web && drush cr"
+
+      - run:
+          name: Apply database updates
+          command: platform ssh -A backend "cd web && drush updb -y"
+
+      - run:
+          name: Import new configurations
+          command: platform ssh -A backend "cd web && drush cim -y"
+
+      - run:
+          name: Apply entity updates
+          command: platform ssh -A backend "cd web && drush entup -y"
+
+  ###########################################
+  ################# RUN TESTS ###############
+  ###########################################
+  run_tests:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          <<: *install_platform_cli
+
+      - run:
+          name: Run ESLint for the React application.
+          command: platform ssh -A frontend "yarn eslint"
+
+      - run:
+          name: Start ChromeDriver
+          command: chromedriver --url-base=wd/hub --port=4444 --ignore-certificate-errors
+          background: true
+
+      - run:
+          name: Install PHP libzip-dev lib for codeception to get installed
+          command: |
+            sudo apt-get install -y libzip-dev
+            sudo docker-php-ext-install zip pcntl pdo_mysql
+
+      - restore_cache:
+          keys:
+            - composer-cache-{{ arch }}-{{ .Branch }}
+            - composer-cache
+
+      - run:
+          name: Install test dependencies
+          command: composer require codeception/codeception:^2.3.8
+
+      - save_cache:
+          key: composer-cache-{{ arch }}-{{ .Branch }}
+          paths:
+            - vendor
+
+      - run:
+          name: Expose app URLs as environment variables
+          shell: /bin/bash
+          command: |
+            FRONTEND_URL="$(platform route:get -A frontend -P url https://\{default\}/)"
+            BACKEND_URL="$(platform route:get -A frontend -P url https://\{default\}/admin/)"
+            echo "FRONTEND_URL=$FRONTEND_URL" >> $BASH_ENV
+            echo "BACKEND_URL=$BACKEND_URL" >> $BASH_ENV
+            source $BASH_ENV
+
+      - run:
+          name: Run Codeception tests
+          shell: /bin/bash
+          command: |
+            ./vendor/bin/codecept run acceptance -c ./tests/codeception -o 'modules: config: WebDriver: host: localhost' --debug || true
+
+      - run:
+          name: Re-run failed Codeception tests
+          shell: /bin/bash
+          command: |
+            ./vendor/bin/codecept run acceptance -c ./tests/codeception -o 'modules: config: WebDriver: host: localhost' --debug -g failed
+
+      - store_artifacts:
+          path: tests/codeception/tests/_output
+
+
+  ######################################
+  ###### CHECK SECURITY UPDATES ########
+  ######################################
+  check_security_updates:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          <<: *install_platform_cli
+
+      - run:
+          name: Check security updates for Drupal backend
+          # Connect via SSH and output result of drush pm-updatestatus as a list | count output lines | make sure there are exactly zero lines which means "No security updates found".
+          command: platform ssh -q -A backend "drush ups -r web --security-only --pipe" | wc -l | grep -q "\b0$"
+
+  ###################################################
+  ###### TRIGGER PENETRATION TESTING ################
+  ###################################################
+  run_penetration_tests:
+    <<: *defaults
+    steps:
+
+      - run:
+          name: Trigger penetration tests for the React.js application
+          command: |
+            if [ ! -z "$SECR_TOKEN_FRONTEND" ]; then
+              curl -k -H "Content-Type: application/json;charset=utf8" -H "Cookie: secr_token=${SECR_TOKEN_FRONTEND};" -X POST -d "{}" https://hub.se.cr/api/SecurityScan/startScan
+            fi
+
+      - run:
+          name: Trigger penetration tests for the Drupal application
+          command: |
+            if [ ! -z "$SECR_TOKEN_BACKEND" ]; then
+              curl -k -H "Content-Type: application/json;charset=utf8" -H "Cookie: secr_token=${SECR_TOKEN_BACKEND};" -X POST -d "{}" https://hub.se.cr/api/SecurityScan/startScan
+            fi
+
+  ###################################################
+  ###### PUSH RELEASE TO ALL ANU'S CLIENTS ##########
+  ###################################################
+  push_release_to_clients:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          name: Push updates to all clients
+          command: |
+
+            # Configure git user.
+            git config --global user.email "circleci@systemseed.com"
+            git config --global user.name "Circle CI"
+
+            # Find all variables set in CIRCLE CI starting with CLIENT_*.
+            vars=$(env | awk -F '=' '{print $1}' | grep 'CLIENT_*') || true
+
+            # Create a new variable $client_repos which is now array of env vars
+            # starting with CLIENT_*.
+            read -a client_repos <<<$vars
+
+            # Every CLIENT_* variable should define a remote git repo.
+            # So we loop through client repos and deploy changes to each of those.
+            for repo_var in "${client_repos[@]}"
+            do
+              # Here ${repo_var} is name of env variable, ${!repo_var} is git remove url.
+              echo "Pushing changes to ${!repo_var} (${repo_var})..."
+              if ! git config remote.${repo_var}.url > /dev/null; then
+                git remote add ${repo_var} ${!repo_var}
+              fi;
+
+              # Make a new git branch to make sure the changes match the
+              # ${CIRCLE_BRANCH} and were not affected by merges for previous clients.
+              git checkout -B ${CIRCLE_BRANCH}_${repo_var}
+
+              # Make sure that all changes in master branch of client's repo
+              # get merged before we push changes from original repo, because
+              # it may contain customer-specific changes.
+              git fetch ${repo_var} master
+              git merge --no-edit ${repo_var}/master ${CIRCLE_BRANCH}_${repo_var}
+              git push --force ${repo_var} ${CIRCLE_BRANCH}_${repo_var}:$CIRCLE_BRANCH
+
+              # Get back to the original branch.
+              git checkout $CIRCLE_BRANCH
+            done
+
+  ########################################################
+  ###### PUSH RELEASE TO THE PRODUCTION ENVIRONMENT ######
+  ########################################################
+  push_release_to_production:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Push release to the production web site
+          command: git push origin $CIRCLE_BRANCH:master
+
+##########################################################
+######## WORKFLOWS. ORCHESTRATING THE CI JOBS  ###########
+##########################################################
+workflows:
+  version: 2
+  workflow:
+    jobs:
+
+      # A job which pushes changes to platform.sh and executes mandatory
+      # operations on the platform.sh.
+      - prepare_platformsh
+
+      # Executes all operations to prepare the web site (flush caches, run updates,
+      # etc).
+      - prepare_site:
+          requires:
+            - prepare_platformsh
+
+      # Executes tests on recently created environment at Platform.sh.
+      - run_tests:
+          requires:
+            - prepare_site
+          filters:
+            branches:
+              ignore:
+                - master
+
+      # Stage branch is treated as pre-production here.
+      # If tests pass on stage environment, it automatically
+      # send changes to the production environment.
+      - push_release_to_production:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only:
+                - stage
+
+      # Stage branch is treated as pre-production here.
+      # If tests pass on stage environment, it automatically
+      # send changes to stage envs for client repos.
+      - push_release_to_clients:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only:
+                - stage
+
+      # Run penetration tests against recent changes.
+      - run_penetration_tests:
+          filters:
+            branches:
+              only:
+                - stage
+
+  # Run security checks for the ANU LMS every Thursday
+  # at 12am.
+  security_updates_scheduled:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 4"
+          filters:
+            branches:
+              only: stage
+    jobs:
+      - check_security_updates

@@ -1,0 +1,44 @@
+.note-content {
+  position: relative;
+
+  .caption {
+    color: $london-sky;
+  }
+
+  .title {
+    margin: .5em 0;
+    min-height: 1.125em;
+    @include media-breakpoint-up(md) {
+      min-height: 1.25em;
+    }
+    @include media-breakpoint-up(lg) {
+      min-height: 1.5em;
+    }
+
+    .placeholder {
+      color: $london-sky;
+      display: block;
+    }
+
+    span {
+      outline: none;
+    }
+  }
+
+  .date {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+  }
+
+  .context-menu {
+    position: absolute;
+    right: 1em;
+    top: 0;
+    @include media-breakpoint-up(md) {
+      position: static;
+      padding-right: 1em;
+    }
+  }
+}

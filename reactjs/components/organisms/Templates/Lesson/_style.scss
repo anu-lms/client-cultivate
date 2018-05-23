@@ -1,0 +1,56 @@
+.lesson {
+
+  .lesson-container {
+    transition: all .2s;
+    margin-bottom: 4em;
+    @include media-breakpoint-up(md) {
+      margin-left: 220px;
+      margin-right: 350px;
+    }
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 6em;
+      margin-right: 480px;
+    }
+
+    &.nav-collapsed {
+      margin-left: 0;
+    }
+    &.notebook-collapsed {
+      margin-right: 0;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin-top: .5em;
+      margin-bottom: .75em;
+      transition: all .3s;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 1em;
+        font-size: 1.875em;
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: 2.5em;
+      }
+    }
+
+    .lesson-content > div {
+      margin-bottom: 3em;
+      @include media-breakpoint-up(md) {
+        margin-bottom: 4em;
+      }
+    }
+
+    .lesson-navigation {
+      margin-top: 4em;
+
+      button {
+        margin-bottom: 2em;
+      }
+    }
+
+    .row > div {
+      transition: all .3s;
+    }
+  }
+
+}

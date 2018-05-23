@@ -1,0 +1,52 @@
+uuid: 5f01ed28-92cf-4792-b4bf-7e593aaf894d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.learner_progress.lesson
+    - field.field.learner_progress.lesson.field_lesson
+    - field.field.learner_progress.lesson.field_progress
+id: learner_progress.lesson.default
+targetEntityType: learner_progress
+bundle: lesson
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_lesson:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_progress:
+    weight: 12
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

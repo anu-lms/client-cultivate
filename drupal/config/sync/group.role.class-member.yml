@@ -1,0 +1,19 @@
+uuid: 3b93b829-e93d-46b8-9260-e865e51024bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.class
+id: class-member
+label: Member
+weight: -100
+internal: true
+audience: member
+group_type: class
+permissions_ui: true
+permissions:
+  0: 'view group'
+  1: 'view group_node:course entity'
+  2: 'view group_node:lesson entity'
+  5: 'view group_node:course content'
+  7: 'view group_node:lesson content'

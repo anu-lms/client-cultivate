@@ -1,0 +1,34 @@
+// Import Bootstrap 4 grid.
+@import "../node_modules/bootstrap-4-grid/scss/grid";
+
+// Import all mixins.
+@import "mixins/*.scss";
+
+// Import all base styles.
+@import "base/variables";
+@import "base/typography";
+@import "base/scaffolding";
+@import "base/layout";
+@import "base/scroll";
+
+// Import styles for float labels.
+@import "vendor/bootstrap-float-label";
+
+// Adding styles for third-party dropdown buttons.
+@import "vendor/react-buttons";
+@import "vendor/react-dropdown";
+
+// Import components.
+@import "components/header";
+@import "components/nprogress";
+@import "components/wysiwyg";
+@import "components/form";
+@import "components/separator";
+@import "components/button";
+@import "components/card";
+@import "components/alert";
+@import "components/collapsible_navigation";
+@import "components/link-with-progress";
+
+// Import all styles near by the react components.
+@import "../components/**/**/*.scss";
