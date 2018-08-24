@@ -1,0 +1,7 @@
+name: Cultivate Content
+type: module
+description: Import Communications course
+core: 8.x
+package: Cultivate
+dependencies:
+  - default_content
