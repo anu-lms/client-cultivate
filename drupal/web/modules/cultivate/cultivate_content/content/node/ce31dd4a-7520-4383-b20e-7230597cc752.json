@@ -1,0 +1,312 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/types-community-work?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/lesson"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/518?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/uid": [
+            {
+                "href": "http:\/\/default\/user\/518?_format=hal_json",
+                "lang": "en"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_blocks": [
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_course": [
+            {
+                "href": "http:\/\/default\/community-development?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 208
+        }
+    ],
+    "uuid": [
+        {
+            "value": "ce31dd4a-7520-4383-b20e-7230597cc752"
+        }
+    ],
+    "vid": [
+        {
+            "value": 999748
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "lesson"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-08-01T22:05:49+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/518?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c0fdfb3d-a8f6-43a8-abaa-c020bb68a5d4"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/518?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c0fdfb3d-a8f6-43a8-abaa-c020bb68a5d4"
+                    }
+                ],
+                "lang": "en"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_blocks": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_heading"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "056e331e-e320-45a7-92df-00b6d84fd200"
+                    }
+                ],
+                "target_revision_id": "5657"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_subheading"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "19fad6c7-2d9b-42c6-8fde-253b839dc35c"
+                    }
+                ],
+                "target_revision_id": "5658"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "9b52c606-35f6-4f1d-b750-22d93731a145"
+                    }
+                ],
+                "target_revision_id": "5659"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "0a06931f-a9f7-4d20-95a0-a1a4d7eb4c64"
+                    }
+                ],
+                "target_revision_id": "5660"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/image_full_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "eeed255b-2585-4127-9b19-71c9bd558e89"
+                    }
+                ],
+                "target_revision_id": "5661"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "2b01423d-af4d-4ac8-8d9e-40b482ea2c22"
+                    }
+                ],
+                "target_revision_id": "5662"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/image_centered_caption"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "448aa8c9-8cb0-4b09-ac5c-297b578c6434"
+                    }
+                ],
+                "target_revision_id": "5663"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_course": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/community-development?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/node\/course"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "279c7d6a-ebd1-4bf1-9f6f-1446e2ca26d4"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "title": [
+        {
+            "value": "Types of Community Work",
+            "lang": "en"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-08-01T20:42:33+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-08-01T22:05:49+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "en"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "en"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/types-community-work",
+            "pid": 1680,
+            "langcode": "en",
+            "lang": "en"
+        }
+    ],
+    "field_is_assessment": [
+        {
+            "value": false
+        }
+    ]
+}

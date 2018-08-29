@@ -1,0 +1,274 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/how-complete-problem-tree?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/lesson"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/518?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/uid": [
+            {
+                "href": "http:\/\/default\/user\/518?_format=hal_json",
+                "lang": "en"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_blocks": [
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_course": [
+            {
+                "href": "http:\/\/default\/community-development?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 236
+        }
+    ],
+    "uuid": [
+        {
+            "value": "d0664b6e-16ce-4a87-a9da-b9cb22108687"
+        }
+    ],
+    "vid": [
+        {
+            "value": 999836
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "lesson"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-08-12T15:20:35+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/518?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c0fdfb3d-a8f6-43a8-abaa-c020bb68a5d4"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/518?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c0fdfb3d-a8f6-43a8-abaa-c020bb68a5d4"
+                    }
+                ],
+                "lang": "en"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_blocks": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_heading_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "1503ff01-3016-41cb-89e8-463d2dd1887a"
+                    }
+                ],
+                "target_revision_id": "6422"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/image_centered_caption"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "268a295c-b069-4303-93b5-867fe3b2a0f8"
+                    }
+                ],
+                "target_revision_id": "6423"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "da77fd85-af6d-4632-b3f6-142eb5f71e53"
+                    }
+                ],
+                "target_revision_id": "6424"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "a1d89705-4fbb-4356-9148-6ff3ac25cfe0"
+                    }
+                ],
+                "target_revision_id": "6425"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "dc339397-2788-450c-adc2-4ebcacec3a72"
+                    }
+                ],
+                "target_revision_id": "6426"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_course": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/community-development?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/node\/course"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "279c7d6a-ebd1-4bf1-9f6f-1446e2ca26d4"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "title": [
+        {
+            "value": "How to complete a Problem Tree",
+            "lang": "en"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-08-06T01:37:34+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-08-12T15:20:35+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "en"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "en"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/how-complete-problem-tree",
+            "pid": 1711,
+            "langcode": "en",
+            "lang": "en"
+        }
+    ],
+    "field_is_assessment": [
+        {
+            "value": false
+        }
+    ]
+}

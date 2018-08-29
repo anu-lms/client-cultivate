@@ -1,0 +1,445 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/advocacy-promoting-democracy?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/node\/lesson"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/revision_uid": [
+            {
+                "href": "http:\/\/default\/user\/518?_format=hal_json"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/uid": [
+            {
+                "href": "http:\/\/default\/user\/518?_format=hal_json",
+                "lang": "en"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_blocks": [
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            },
+            {
+                "href": ""
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_course": [
+            {
+                "href": "http:\/\/default\/community-development?_format=hal_json"
+            }
+        ]
+    },
+    "nid": [
+        {
+            "value": 223
+        }
+    ],
+    "uuid": [
+        {
+            "value": "f8bd0e94-3d5d-491b-9a9d-6120fc0f7e40"
+        }
+    ],
+    "vid": [
+        {
+            "value": 999802
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "lesson"
+        }
+    ],
+    "revision_timestamp": [
+        {
+            "value": "2018-08-05T22:51:14+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/revision_uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/518?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c0fdfb3d-a8f6-43a8-abaa-c020bb68a5d4"
+                    }
+                ]
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/518?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c0fdfb3d-a8f6-43a8-abaa-c020bb68a5d4"
+                    }
+                ],
+                "lang": "en"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_blocks": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_heading"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "e6d7a211-a305-4ce2-a560-6e4dbf62ef86"
+                    }
+                ],
+                "target_revision_id": "6206"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "73f04e8d-e784-425f-9a4c-55837c71c998"
+                    }
+                ],
+                "target_revision_id": "6207"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "80ef4d58-deed-4d78-af66-b0589f3bc0c0"
+                    }
+                ],
+                "target_revision_id": "6208"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/image_centered_caption"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "9ad5bfcc-1f5c-44dd-8d12-c7c724416276"
+                    }
+                ],
+                "target_revision_id": "6209"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/image_centered_caption"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "24ea115f-0093-4ffd-aad0-987645cf21a7"
+                    }
+                ],
+                "target_revision_id": "6210"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/image_centered_caption"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "770369b2-f6ad-46ab-a246-a723122c3d20"
+                    }
+                ],
+                "target_revision_id": "6211"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "39551b59-8edd-49cc-a4b7-25ecad05f680"
+                    }
+                ],
+                "target_revision_id": "6212"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "93bf8564-0b89-4909-b578-6f03b4c3a155"
+                    }
+                ],
+                "target_revision_id": "6213"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "5d45e4fb-6b1b-46c8-a468-e62db2123810"
+                    }
+                ],
+                "target_revision_id": "6214"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "656c451c-eaa7-4e7b-a11f-a458ac4b5712"
+                    }
+                ],
+                "target_revision_id": "6215"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_subheading"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "33d6d5f4-ddcb-4934-a03c-f4546df82dcc"
+                    }
+                ],
+                "target_revision_id": "6216"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/list_bullet"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "021f87b3-002e-441e-bda4-65c1283b0d27"
+                    }
+                ],
+                "target_revision_id": "6217"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "ea684e0a-6447-403b-9665-af047298d1a3"
+                    }
+                ],
+                "target_revision_id": "6218"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/text_text"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "cb9111e5-6ed7-435d-bddd-26552193920d"
+                    }
+                ],
+                "target_revision_id": "6219"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/lesson\/field_lesson_course": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/community-development?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/node\/course"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "279c7d6a-ebd1-4bf1-9f6f-1446e2ca26d4"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "title": [
+        {
+            "value": "Advocacy: Promoting Democracy",
+            "lang": "en"
+        }
+    ],
+    "created": [
+        {
+            "value": "2018-08-05T22:19:43+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2018-08-05T22:51:14+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "promote": [
+        {
+            "value": false,
+            "lang": "en"
+        }
+    ],
+    "sticky": [
+        {
+            "value": false,
+            "lang": "en"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "path": [
+        {
+            "alias": "\/advocacy-promoting-democracy",
+            "pid": 1698,
+            "langcode": "en",
+            "lang": "en"
+        }
+    ],
+    "field_is_assessment": [
+        {
+            "value": false
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 name: Cultivate Content
 type: module
-description: Import Communications course
+description: Import Community Development course
 core: 8.x
 package: Cultivate
 dependencies:
